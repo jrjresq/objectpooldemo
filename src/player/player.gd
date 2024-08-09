@@ -9,7 +9,7 @@ const BPS := 8.0
 
 @export var payload := preload("res://src/projectile/projectile.tscn")
 @export var spread := PI/4
-@export var speed_randomness := 0.25
+@export var speed_randomness := 0.5
 
 @onready var marker : Marker2D = $Marker2D
 
