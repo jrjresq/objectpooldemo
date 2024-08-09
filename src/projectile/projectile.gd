@@ -22,9 +22,12 @@ func prepare() -> void:
 		show()
 		
 	set_process(true)
+	set_physics_process(true)
 
 func scrub() -> void:
+	hide()
 	set_process(false)
+	set_physics_process(false)
 
 func exit_scene() -> void:
 	if Settings.object_pooling:
@@ -45,5 +48,8 @@ func launch(from : Vector2, rot : float, rando : float = 0.0) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is StaticBody2D:
-		hide()
 		exit_scene()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	exit_scene()

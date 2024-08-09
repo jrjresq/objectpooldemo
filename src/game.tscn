@@ -19,9 +19,7 @@ script = ExtResource("1_io86a")
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="Environment"]
-collision_layer = 0
-collision_mask = 5
-monitorable = false
+collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Area2D"]
 position = Vector2(3, -105)
@@ -95,6 +93,7 @@ offset_left = 138.0
 offset_top = 27.0
 offset_right = 182.0
 offset_bottom = 51.0
+focus_mode = 0
 
 [node name="VSlider" type="VSlider" parent="UI/Control"]
 layout_mode = 2
@@ -103,12 +102,12 @@ offset_top = 56.0
 offset_right = 166.0
 offset_bottom = 604.0
 size_flags_vertical = 3
+focus_mode = 0
 max_value = 9.0
 scrollable = false
 tick_count = 10
 ticks_on_borders = true
 
-[connection signal="area_exited" from="Environment/Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="body_exited" from="Environment/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="toggled" from="UI/Control/PoolingButton" to="UI" method="_on_pooling_button_toggled"]
 [connection signal="value_changed" from="UI/Control/VSlider" to="UI" method="_on_v_slider_value_changed"]

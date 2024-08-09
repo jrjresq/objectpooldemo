@@ -19,4 +19,3 @@ texture = ExtResource("1_15fo3")
 shape = SubResource("CapsuleShape2D_j2jq4")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(32, 0)
