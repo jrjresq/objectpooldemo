@@ -23,6 +23,7 @@ func instance(scene : PackedScene) -> Node:
 		
 		if "pool_handle" in new_instance:
 			new_instance.pool_handle = scene
+
 		return new_instance
 
 	else:

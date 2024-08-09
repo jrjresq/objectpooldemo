@@ -20,7 +20,6 @@ func _ready() -> void:
 func prepare() -> void:
 	if not visible:
 		show()
-		
 	set_process(true)
 	set_physics_process(true)
 
