@@ -9,11 +9,11 @@ func instance(scene : PackedScene) -> Node:
 	if existing_instances:
 		var new_instance = existing_instances.pop_back()
 
-		## if the instance is invalid, keep popping back until it is valid. otherwise, make a new instance
-		#if not is_instance_valid(new_instance):
-			#if existing_instances.size() <= 0:
-				#instances.erase(scene)
-			#return instance(scene)
+		# if the instance is invalid, keep popping back until it is valid. otherwise, make a new instance
+		if not is_instance_valid(new_instance):
+			if existing_instances.size() <= 0:
+				instances.erase(scene)
+			return instance(scene)
 
 		if existing_instances.size() <= 0:
 			instances.erase(scene)
