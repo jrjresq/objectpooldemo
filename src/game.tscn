@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh7y3a4iw5w5a"]
+
+[ext_resource type="Script" path="res://src/game.gd" id="1_io86a"]
+[ext_resource type="PackedScene" uid="uid://d3ewsd2r1sf3w" path="res://src/player/player.tscn" id="1_xiq1a"]
+[ext_resource type="Script" path="res://src/utils/ui.gd" id="3_dlmg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4le1"]
+size = Vector2(219, 244)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_io86a")
+
+[node name="Player" parent="." instance=ExtResource("1_xiq1a")]
+
+[node name="PlayerCam" type="Camera2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Environment"]
+collision_layer = 0
+collision_mask = 5
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Area2D"]
+position = Vector2(3, -105)
+polygon = PackedVector2Array(-491, -439, 720, -479, 901, 624, -765, 633, -734, -499, -658, -547, -723, 579, 830, 579, 649, -414, -663, -385, -652, -555)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="Environment/StaticBody2D"]
+position = Vector2(-9.93608, -15.3659)
+scale = Vector2(1.00457, 0.987805)
+color = Color(0.326085, 0.505334, 0.834323, 1)
+polygon = PackedVector2Array(205, -112, 205, 134, 424, 134, 424, -112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D"]
+position = Vector2(306.5, -4)
+shape = SubResource("RectangleShape2D_x4le1")
+debug_color = Color(0.924381, 0.22752, 0.396996, 0.42)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_dlmg2")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.016
+anchor_top = 0.057
+anchor_right = 0.968
+anchor_bottom = 0.95
+offset_left = -19.432
+offset_top = -44.936
+offset_right = -928.136
+offset_bottom = 58.4
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.831373, 0.290196, 0.133333, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 26.0
+offset_right = 145.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+text = "Object Pooling:"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Control"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 306.0
+offset_right = 141.0
+offset_bottom = 377.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]Bullets per
+Frame[/center]"
+scroll_active = false
+
+[node name="PoolingButton" type="CheckButton" parent="UI/Control"]
+layout_mode = 2
+offset_left = 138.0
+offset_top = 27.0
+offset_right = 182.0
+offset_bottom = 51.0
+
+[node name="VSlider" type="VSlider" parent="UI/Control"]
+layout_mode = 2
+offset_left = 150.0
+offset_top = 56.0
+offset_right = 166.0
+offset_bottom = 604.0
+size_flags_vertical = 3
+max_value = 9.0
+scrollable = false
+tick_count = 10
+ticks_on_borders = true
+
+[connection signal="area_exited" from="Environment/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_exited" from="Environment/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="toggled" from="UI/Control/PoolingButton" to="UI" method="_on_pooling_button_toggled"]
+[connection signal="value_changed" from="UI/Control/VSlider" to="UI" method="_on_v_slider_value_changed"]

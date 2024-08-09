@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ewsd2r1sf3w"]
+
+[ext_resource type="Texture2D" uid="uid://fcfitlrpgrev" path="res://assets/icon.svg" id="1_15fo3"]
+[ext_resource type="Script" path="res://src/player/player.gd" id="1_u143o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2jq4"]
+radius = 31.0
+height = 62.0
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_u143o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_15fo3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_j2jq4")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(32, 0)

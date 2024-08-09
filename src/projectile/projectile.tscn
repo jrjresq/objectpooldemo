@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfacoo4ts70wb"]
+
+[ext_resource type="Texture2D" uid="uid://bw12hvw7gyg23" path="res://assets/small bullet.webp" id="1_awky2"]
+[ext_resource type="Script" path="res://src/projectile/projectile.gd" id="1_pg21p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gy1ql"]
+radius = 8.0
+height = 32.0
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_pg21p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_awky2")
+offset = Vector2(0, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_gy1ql")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
