@@ -5,10 +5,10 @@ const DEADZONE_SQUARED := 0.1
 const MAX_SPEED := 500.0
 const ACCELERATION := 2500.0
 const FRICTION := 2500.0
-const BPS := 8.0
+const BPS := 16.0
 
 @export var payload := preload("res://src/projectile/projectile.tscn")
-@export var spread := PI/4
+@export var spread := PI/2
 @export var speed_randomness := 0.5
 
 @onready var marker : Marker2D = $Marker2D
